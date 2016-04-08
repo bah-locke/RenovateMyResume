@@ -1,0 +1,41 @@
+<%= stylesheet_link_tag "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" %>
+<div class="container-fluid">
+	<h1>Welcome <%= @user_name %></h1><br><br>
+	<h4>It's <%= Time.now.strftime("%I:%M %p on %m/%d/%Y") %><br>
+	You have <%= pluralize(@total_resumes, "resume") %> available to edit.</h4>
+	 
+	<% if @total_resumes > 0 %>
+		<table class="table table-striped">
+		  <thead>
+		    <tr>
+		      <th>Objective</th>
+			  <th>Skills</th>
+			  <th>Experience</th>
+			  <th>Education</th>
+		      <th colspan="3"></th>
+		    </tr>
+		  </thead>
+		
+		  <tbody>
+			<% @resumes.each do |resume| %>
+			  <tr>
+		        <td><%= resume.objective %></td>
+		        <td><%= resume.skills %></td>
+		        <td><%= resume.experience %></td>
+		        <td><%= resume.education %></td>
+		        <td><%= link_to 'Show', resume %></td>
+		        <td><%= link_to 'Edit', edit_resume_path(resume) %></td>
+		        <td><%= link_to 'Destroy', resume, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+			  </tr>
+			<% end %>
+		  </tbody>
+		</table>
+	<% end %>
+	
+	<p><%= link_to 'New Resume', new_resume_path %></p>
+	<p><%= link_to 'Logout', logout_path, method: :delete %></p>
+</div>
+	
+
+
+

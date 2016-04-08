@@ -1,0 +1,58 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<%= stylesheet_link_tag "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" %>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#purple").click(function(){
+			$("#background-style").css({
+				"background-image": "url(<%= asset_path('purple_background.jpg') %>)",
+				"background-repeat": "no-repeat"
+			});
+
+		});
+	$("#blue").click(function(){
+			$("#background-style").css({
+				"background-image": "url(<%= asset_path('blue_background.jpg') %>)",
+				"background-repeat": "no-repeat"
+			});
+
+		});
+		$("#green").click(function(){
+			$("#background-style").css({
+				"background-image": "url(<%= asset_path('green_background.png') %>)",
+				"background-repeat": "no-repeat"
+			});
+
+		});
+	});
+</script>
+<div class="container-fluid text-center" style="position:relative; height: 768px; width: 1366px;" >
+	
+		<h1>View Resume</h1>
+		<h2>Select a Style</h2><br><br>
+		<form action="" style="align-text:center">
+			<input type="radio" name="styles" id="purple" value="purple">Faded Purple &nbsp&nbsp
+			<input type="radio" name="styles" id="blue" value="blue">Faded Blue &nbsp&nbsp
+			<input type="radio" name="styles" id="green" value="green">Faded Green<br><br><br>
+		</form>
+		<p id="notice"><%= notice %></p>
+	<div id="background-style" style="text-align: left; margin: auto; width: 40%; height: 80%; padding: 10px; box-shadow: 15px 15px #555555;">
+		  <h2><strong><%= @user_name %></strong></h2>
+		  <strong>_________________________________________________________</strong>
+		  
+		  <h3>Objective:</h3>
+		  <p><%= @resume.objective %></p><br>
+		
+		
+		  <h3>Skills:</h3>
+		  <h4><%= @resume.skills %></h4><Br>
+		
+		  <h3>Experience:</h3>
+		  <p><%= @resume.experience %></p><br>
+		
+		  <h3>Education:</h3>
+		  <p><%= @resume.education %></p><br>
+		  
+	</div><br><br>
+		  <%= link_to 'Edit', edit_resume_path(@resume) %> |
+		  <%= link_to 'Back', admin_path %>	
+</div>
